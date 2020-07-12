@@ -1,6 +1,3 @@
-RUN python3 -m  venv ee-test-env
-RUN source ee-test-env/bin/activate
-
 FROM python:3.8
 RUN pip install -U pip
 

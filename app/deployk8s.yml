@@ -1,34 +1,34 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: hello-python-ee-test-service
+  name: hello-python-service
 spec:
   selector:
-    app: hello-python-ee-app
+    app: hello-python
   ports:
   - protocol: "TCP"
-    port: 8000
-    targetPort: 8080
+    port: 5000
+    targetPort: 5000
   type: LoadBalancer
 
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hello-python-ee-app
+  name: hello-python
 spec:
   selector:
     matchLabels:
-      app: hello-python-ee-app
+      app: hello-python
   replicas: 4
   template:
     metadata:
       labels:
-        app: hello-python-ee-app
+        app: hello-python
     spec:
       containers:
-      - name: hello-python-ee-app
-        image: santoshrvarma/hello-python-ee-app:latest
+      - name: hello-python
+        image: santoshrvarma/hello-python:latest
         imagePullPolicy: Never
         ports:
-        - containerPort: 8080
+        - containerPort: 5000

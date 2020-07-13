@@ -1,6 +1,6 @@
-Author: SV
+Author: Santosh Varma
 Date: 12/07/2020
-Version: 1.0
+
 
 This is Simple Hello World Python app written in Flask
 
@@ -38,3 +38,30 @@ Note: here port is 8080, you can run step 5 multiple times with different port t
 12.. You can also expose your application using "kubectl expose deployment/hello-python --type="NodePort" --port 8080"
 
 13.. You can also Check your hello-python app  using command "minikube service my-service"
+
+
+
+
+DockerFile:
+
+# Installs Python version - here 3.8
+FROM python:3.8
+
+# Updating PIP installation (Optional) 
+RUN pip install -U pip
+
+# Making directory app
+RUN mkdir /app
+
+# Changing to directory app as working directory
+WORKDIR /app
+ADD . /app/
+
+# Running & installing all the dependancies for the application
+RUN pip install -r requirements.txt
+
+# Exposing to port, I am exposign it on 5000, you can change to any
+EXPOSE 5000
+
+# Executing the Main.py python Flask code
+CMD ["python", "/app/main.py"]
